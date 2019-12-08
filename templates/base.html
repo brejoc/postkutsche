@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    {% block title %}
+    <title>Postkutsche</title>
+    {% endblock %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="photon/css/photon.css?v=1.0">
+    {% block extra_css %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="window">
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane-sm sidebar">
+          {% block navigation %}
+          {% endblock %}
+          </div>
+          {% block main_pane %}
+          {% endblock %}
+        </div>
+      </div>
+        {% block footer %}
+        {% endblock %}
+    </div>
+  </body>
+  <script src="guy.js"></script> 
+  {% block extra_js %}
+  {% endblock %}
+</html>

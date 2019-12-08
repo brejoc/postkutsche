@@ -1,0 +1,11 @@
+[paths]
+#upload_folder = "~/Postkutsche"
+upload_folder = "/tmp/postkutsche"
+archive_folder = "/tmp/postkutsche/archive"
+
+[cache]
+database = "~/.config/postkutsche/db.sqlite"
+
+[onlinebrief24]
+username = ""
+password = ""

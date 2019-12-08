@@ -1,0 +1,28 @@
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Farbe</th>
+            <th>Doppelseitig</th>
+            <th>Umschlag</th>
+            <th>Versand</th>
+            <th>Einschreiben</th>
+            <th>Zahlschein</th>
+            <th>Datum</th>
+        </tr>
+    </thead>
+    <tbody onClick="self.open_archive_folder();">
+        {% for pdf in pdf_files %}
+        <tr onClick="self.open_archive_file('{{ pdf.filename }}');">
+            <td>{{ pdf.filename }}</td>
+            <td>{% if pdf.color %}<span class="icon icon-check"></span>{% else %}<span class="icon icon-cancel"></span>{% endif %}</td>
+            <td>{% if pdf.duplex %}<span class="icon icon-check"></span>{% else %}<span class="icon icon-cancel"></span>{% endif %}</td>
+            <td>{{ pdf.envelope }}</td>
+            <td>{{ pdf.distribution }}</td>
+            <td>{{ pdf.registered or "nein" }}</td>
+            <td>{{ pdf.payment_slip or "nein" }}</td>
+            <td>{{ pdf.created_at.strftime('%d.%m.%Y') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

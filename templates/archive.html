@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+ .window {
+     border-radius: 6px;
+     overflow: hidden;
+ }
+ .sidebar {
+     background-color: #f5f5f4;
+ }
+</style>
+{% endblock %}
+
+{% block navigation %}
+<nav class="nav-group">
+  <h5 class="nav-group-title">Navigation</h5>
+  <a class="nav-group-item" onClick="window.location.href='/Main';">
+    <span class="icon icon-upload-cloud"></span>
+    Outbox
+  </a>
+  <a class="nav-group-item active" onClick="window.location.href='/Archive';">
+    <span class="icon icon-download"></span>
+    Archiv
+  </a>
+  <a class="nav-group-item" onClick="window.location.href='/Settings';">
+    <span class="icon icon-cog"></span>
+    Einstellungen
+  </a>
+</nav>
+{% endblock %}
+
+{% block main_pane %}
+<div class="pane pdf_table" ic-get-from="/archive" ic-trigger-on="load">
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer class="toolbar toolbar-footer">
+    <div class="toolbar-actions">
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="jquery.js"></script>
+  <script src="intercooler-1.2.3.min.js"></script>
+{% endblock %}

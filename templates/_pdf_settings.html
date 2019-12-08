@@ -1,0 +1,59 @@
+<div style="position:fixed;right:0px;left:0px;top:0px;bottom:0px;display:flex;align-items: center;justify-content: center;background-color:rgba(0, 0, 0, 0.5);">
+    
+  <div style="width: 75% !important; align-items: center !important;justify-content: center; !important">
+    <div class="pane" style="background-color: #fff;">
+      <form class="padded-more" action="/pdf_settings_save" method="post">
+          <input type="hidden" id="adler32" name="adler32" value="{{ pdf.adler32 }}" />
+          <input type="hidden" id="filename" name="filename" value="{{ pdf.filename }}" />
+          <div class="form-group">
+            <label for="color">Farbe</label>
+            <select id="color" name="color" class="form-control">
+              <option value="true"  {% if pdf.color %}selected{% endif %}>Ja</option>
+              <option value="false" {% if not pdf.color %}selected{% endif %}>Nein</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="duplex">Duplex</label>
+            <select id="duplex" name="duplex" class="form-control">
+              <option value="true"  {% if pdf.duplex %}selected{% endif %}>Ja</option>
+              <option value="false" {% if not pdf.duplex %}selected{% endif %}>Nein</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="envelope">Umschlag</label>
+            <select id="envelope" name="envelope" class="form-control">
+              <option value="din-lang" {% if pdf.envelope == "din_lang" %}selected{% endif %}>DIN lang</option>
+              <option value="c4"       {% if pdf.envelope == "c4" %}selected{% endif %}>C4</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="distribution">Versand</label>
+            <select id="distribution" name="distribution" class="form-control">
+              <option value="auto"          {% if pdf.distribution == "auto" %}selected{% endif %}>Auto</option>
+              <option value="national"      {% if pdf.distribution == "national" %}selected{% endif %}>National</option>
+              <option value="international" {% if pdf.distribution == "international" %}selected{% endif %}>International</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="registered">Einschreiben</label>
+            <select id="registered" name="registered" class="form-control">
+              <option value="None"      {% if not pdf.registered %}selected{% endif %}>Nein</option>
+              <option value="insertion" {% if pdf.registered == "insertion" %}selected{% endif %}>Einwurf-Einschreiben</option>
+              <option value="standard"  {% if pdf.registered == "standard" %}selected{% endif %}>Standard-Einschreiben</option>
+              <option value="personal"  {% if pdf.registered == "personal" %}selected{% endif %}>Einschreiben eigenhändig</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="payment_slip">Zahlschein</label>
+            <select id="payment_slip" name="payment_slip" class="form-control">
+              <option value="None"     {% if not pdf.payment_slip %}selected{% endif %}>Kein Zahlschein</option>
+              <option value="national" {% if pdf.payment_slip == "national" %}selected{% endif %}>Inlands-Zahlschein</option>
+              <option value="sepa"     {% if pdf.payment_slip == "sepa" %}selected{% endif %}>SEPA-Zahlschein</option>
+            </select>
+          </div>
+
+          &nbsp;<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+          <button type="button" onclick="self.exit(); return false;" class="btn btn-default pull-right">Abbrechen</button>
+    </div>
+  </div>
+</div>

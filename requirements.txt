@@ -1,0 +1,7 @@
+guy
+Jinja2
+onlinebrief24
+toml
+peewee
+python-dbus
+notify2
