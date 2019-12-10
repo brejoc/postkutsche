@@ -3,5 +3,5 @@ Jinja2
 onlinebrief24
 toml
 peewee
-python-dbus
+dbus-python
 notify2
