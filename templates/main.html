@@ -48,6 +48,21 @@
 {% block extra_js %}
   <script src="jquery.js"></script>
   <script src="intercooler-1.2.3.min.js"></script>
+  <script src="dropzone.min.js"></script>
+  <script type="text/javascript">
+   $( document ).ready(function() {
+       // attaching drozone ot the pdf table div
+       var myDropzone = new Dropzone("div.pdf_table", {
+           url: "/file-upload",
+           clickable: false
+       });
+
+       // on success we need to reload the PDF table view.
+       myDropzone.on("success", function() {
+           Intercooler.triggerRequest($('.pdf_table'))
+       });
+   });
+  </script>
   <script type="text/javascript">
     guy.on("reload_pdf_files", function(argument) {
       Intercooler.triggerRequest($('.pdf_table'))

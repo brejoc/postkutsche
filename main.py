@@ -255,6 +255,21 @@ def get_pdf_files(web):
     web.write(template.render(pdf_files=pdf_files))
 
 
+@http("/file-upload")
+def file_upload(web):
+    """PDF upload aka adding PDF via drag and drop."""
+    pdf_file = web.request.files.get("file")[0]
+    if pdf_file.get("content_type") != "application/pdf":
+        web.write("No PDF")
+    else:
+        upload_folder = CONFIG["paths"].get("upload_folder")
+        filename = pdf_file.get("filename")
+        content = pdf_file.get("body")
+        with open(os.path.join(upload_folder, filename), "wb") as new_file:
+            new_file.write(content)
+        web.write("success")
+
+
 @http("/archive")
 def get_archive_pdf_files(web):
     pdf_files = get_archive_files()
