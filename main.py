@@ -46,7 +46,7 @@ class Main(Guy):
             pass
         super().__init__()
 
-    def _render(self, path):
+    def render(self, path):
         """\
         Renders template for main page.
         """
@@ -130,6 +130,15 @@ class Main(Guy):
         """
         return PdfSettings(pdf_hash=pdf_hash, filename=filename)
 
+
+class Archive(Guy):
+    def render(self, path):
+        """\
+        Renders template for archive page.
+        """
+        template = ENV.get_template("archive.html")
+        return template.render(pdf_files=[])
+
     def open_archive_file(self, filename):
         """\
         Opens an archived file via xdg-open (linux), explorer (win) or open (macos).
@@ -147,17 +156,8 @@ class Main(Guy):
             logging.critical("'%s' seems to be not existing!", archive_file)
 
 
-class Archive(Guy):
-    def _render(self, path):
-        """\
-        Renders template for archive page.
-        """
-        template = ENV.get_template("archive.html")
-        return template.render(pdf_files=[])
-
-
 class Settings(Guy):
-    def _render(self, path):
+    def render(self, path):
         """\
         Renders template for settings page.
         """
@@ -175,9 +175,9 @@ class PdfSettings(Guy):
     def __init__(self, *args, **kwargs):
         self.pdf_hash = kwargs["pdf_hash"]
         self.pdf_filename = kwargs["filename"]
-        super().__init__(*args, **kwargs)
+        super().__init__(*args)
 
-    def _render(self, path, includeGuyJs=False):
+    def render(self, path, includeGuyJs=False):
         template = ENV.get_template("_pdf_settings.html")
         pdf = (
             models.PdfFile.select()
